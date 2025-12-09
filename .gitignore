@@ -212,3 +212,5 @@ submissions/*
 !.gitkeep
 submissions/*
 !.gitkeep
+plots/*.png
+!plots/.gitkeep
