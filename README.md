@@ -1,10 +1,4 @@
-# Credit Card Fraud Detection Example
-
-This repository is an example template that demonstrates how to structure a machine learning project for reproducibility. It includes a minimal end-to-end workflow for detecting credit card fraud using scikit‑learn.
-
-## Purpose
-
-The layout of this project mirrors the recommended directory organization shown in the assignment instructions. It can be used as a starting point for your own work or as a reference when showcasing your skills to potential employers. All code is well documented and grouped by task so you can easily build upon it.
+# MAT-311 Project
 
 ## Project layout
 
@@ -12,37 +6,48 @@ The layout of this project mirrors the recommended directory organization shown 
 .
 ├── main.py                 # Entry point that runs the entire pipeline
 ├── requirements.txt        # Python dependencies
+├── .gitignore              # Specifies files and folders Git should ignore
 ├── data/
-│   ├── processed/          # Created after running the pipeline
-│   └── raw/
-│       └── card_transdata.csv
-├── notebooks/
-│   └── credit_card_fraud_analysis.ipynb
+│   ├── processed/          # Cleaned and preprocessed data saved here
+│       └── test_df_clean.csv
+│       └── train_df_clean.csv
+│   └── raw/                # Raw datasets
+│       └── test.csv
+│       └── train.csv
+├── plots/                  # Generated visualizations from EDA
+│   └── .gitkeep            # All plots created by eda.py
+├── submissions/            # Model output CSVs
+│   └── .gitkeep            # Keeps folder tracked
 └── src/
     ├── data/
-    │   ├── load_data.py
-    │   ├── preprocess.py
-    │   └── split_data.py
+    │   ├── load_data.py    # Load data from CSV
+    │   ├── preprocess.py   # Cleans data
+    │   ├── scale_data.py   # Scales data using StandardScaler
+    │   └── split_data.py   # Splits the data
     ├── features/
-    │   └── build_features.py
+    │   └── build_features.py    # Builds feature interactions
     ├── models/
-    │   ├── train_model.py
-    │   ├── dumb_model.py
-    │   └── knn_model.py
+    │   ├── decision_tree.py            # Trains a decision tree model
+    │   ├── dumb_model.py               # Trains a dumb model
+    │   ├── dummy_model_class.py        # Creates a class for the dumb model
+    │   ├── evaluate_model.py           # Evaluates any model
+    │   ├── gradient_boosting.py        # Creates a gradient boosting model
+    │   ├── knn_model.py                # Creates a KNN model
+    │   ├── logistic_regression.py      # Creates a logistic regression model
+    │   ├── random_forest.py            # Creates a random forest model
     ├── utils/
-    │   └── helper_functions.py
+    │   └── helper_functions.py        # Stores helper functions
+    │   └── create_submission.py       # Creates the submission CSV files
     └── visualization/
-        ├── eda.py
-        └── performance.py
+        ├── eda.py                    # Performs EDA
+        └── performance.py            # Creates performance evaluation plots
 ```
 
-`main.py` imports the modules inside `src/` and executes them to reproduce the analysis and results. Jupyter notebooks are provided only for prototyping and exploration—they are **not** meant to be the main entry point of the project.
+`main.py` imports the modules inside `src/` and executes them to reproduce the analysis and results. 
 
-Some directories such as `data/external/`, `src/utils/` and `tests/` may be empty, but the folder structure is provided to illustrate how a complete project should look.
+## Running the model
 
-## Running the example
-
-Install the dependencies and run the pipeline. You should use the versions of the dependencies as specified by the requirements file:
+Install the dependencies and run the pipeline.
 
 ```bash
 conda create -n credit_fraud --file requirements.txt
@@ -50,5 +55,7 @@ conda activate credit_fraud
 python main.py
 ```
 
-This will load the dataset, perform basic feature engineering, train a simple model and produce visualizations similar to those in the notebook.
-The cleaned data will be written to `data/processed/` and all plots will be displayed interactively.
+This will load the dataset, perform data cleaning, split the data, scale the data, and train, evaluate, and create a submission file for a selected model.
+The submission file will be stored in submissions/
+All EDA done will have files saved to plots/
+
